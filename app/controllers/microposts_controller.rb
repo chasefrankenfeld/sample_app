@@ -17,16 +17,11 @@ class MicropostsController < ApplicationController
 
   # This can be romved as Rails can generate this for me
   def edit
-    #respond_to do |format|
-    #  format.html
-    #  format.json
-    #end
   end
 
   def update
     if current_user?(@micropost.user)
       @micropost.update_attributes(micropost_params)
-      redirect_to root_url
       flash[:success] = "Micropost updated"
     else
       render 'edit'

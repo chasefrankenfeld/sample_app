@@ -1,2 +1,3 @@
-$('#micropost-form').html("<%= escape_javascript(render partial: 'form') %>");
-$('#micropost-form').slideDown(350);
+var m_id = <%= @micropost.id %>
+$('#micropost-form-' + m_id).html("<%= j (render partial: 'form') %>");
+$('#micropost-form-' + m_id).slideDown(350);
