@@ -1,7 +1,7 @@
 <% if logged_in? %>
   <%= render 'static_pages/logged_in_home' %>
 <% else %>
-  <%= render 'static_pages/logged_out_home' %>
+  <%= render 'logged_out_home' %>
 <% end %>
 
 <%= link_to image_tag("rails.png", class: "img-rounded", width: "60", height: "80", alt: "Chase backflip & link to instagram"),

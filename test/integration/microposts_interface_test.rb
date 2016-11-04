@@ -23,6 +23,12 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       assert_redirected_to root_url
       follow_redirect!
       assert_match content, response.body
+      # Edit patch
+      #assert_select 'a', text: 'Edit'
+      #edit_micropost = @user.microposts.paginate(page: 1).first
+      #assert_no_difference 'Micropost.count' do
+      #  patch micropost_path(edit_micropost)
+      #end
       # Delete post
       assert_select 'a', text: 'Delete'
       first_micropost = @user.microposts.paginate(page: 1).first

@@ -20,9 +20,8 @@ class MicropostsController < ApplicationController
   end
 
   def update
-    if current_user?(@micropost.user)
-      @micropost.update_attributes(micropost_params)
-      flash[:success] = "Micropost updated"
+    if @micropost.update_attributes(micropost_params)
+      #flash[:success] = "Micropost updated"
     else
       render 'edit'
     end
