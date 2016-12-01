@@ -1,17 +1,21 @@
-<% micropost ||= @micropost %>
-
+<!-- # <% micropost ||= @micropost %> -->
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-  <span class="content"><%= micropost.content %></span>
+  <span id="micropost-form-<%= micropost.id %>" class="content"><%= micropost.content %></span>
+  <span id="micropost-edit-<%= micropost.id %>" style="display:none;"></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.updated_at) %> ago.
     <% if current_user?(micropost.user) %>
-        <!--%= link_to "Edit", edit_micropost_path(micropost)%-->
-        <%= link_to "Edit", edit_micropost_path(micropost), remote: true %>
-        <%= link_to "Delete", micropost, method: :delete,
-                                         data: { confirm: "You sure?" } %>
-      <% end %>
-    </span>
-    <div id="micropost-form-<%= micropost.id %>" style="display:none;"></div>
+      <%= link_to "Edit", edit_micropost_path(micropost), remote: true %>
+      <%= link_to "Delete", micropost, remote: true, method: :delete %>
+    <% end %>
+    <%= link_to "Comment", new_comment_path %>
+  </span>
+
+  <span >
+    <%= render micropost.comments %>
+  </span>
+    <!-- <span id="micropost-create-<%= micropost.id %>" style="display:true;"> -->
+    <!-- </span> -->
 </li>

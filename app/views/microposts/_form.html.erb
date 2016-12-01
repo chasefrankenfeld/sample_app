@@ -1,7 +1,6 @@
 <%= form_for(@micropost, remote: true, url: micropost_path(params[:id])) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: @micropost.content %>
+    <%= f.text_field :content, placeholder: @micropost.content, remote: true%>
   </div>
-  <%= f.submit "Update", remote: true, class: "btn btn-primary" %>
 <% end %>

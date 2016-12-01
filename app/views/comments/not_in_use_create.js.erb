@@ -1,0 +1,4 @@
+var m_id = <%= @micropost.id %>
+$('#micropost-create-' + m_id).html("<%= j (render 'commments/form') %>");
+$('#micropost-form-' + m_id).hide();
+$('#micropost-create-' + m_id).show();

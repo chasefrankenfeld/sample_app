@@ -1,3 +1,4 @@
 var m_id = <%= @micropost.id %>
-$('#micropost-form-' + m_id).html("<%= j (render partial: 'form') %>");
-$('#micropost-form-' + m_id).slideDown(350);
+$('#micropost-edit-' + m_id).html("<%= j (render 'microposts/form') %>");
+$('#micropost-form-' + m_id).hide();
+$('#micropost-edit-' + m_id).show();

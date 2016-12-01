@@ -1,0 +1,7 @@
+<%= form_for(@micropost.comment) do |f| %>
+  <%= hidden_field_tag :micropost_id, @micropost.id %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :content, placeholder: "Comment..." %>
+  </div>
+<% end %>

@@ -5,10 +5,11 @@ class MicropostsController < ApplicationController
   #respond_to :html, :js
 
   def create
+    @micropost = current_user.microposts.build
+
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      flash[:success] = "Micropost created!"
-      redirect_to root_url
+      @feed_items = current_user.feed.paginate(page: params[:page])
     else
       @feed_items = []
       render 'static_pages/home'
@@ -17,20 +18,23 @@ class MicropostsController < ApplicationController
 
   # This can be romved as Rails can generate this for me
   def edit
+    @micropost = Micropost.find(params[:id])
   end
 
   def update
+    @micropost = Micropost.find(params[:id])
     if @micropost.update_attributes(micropost_params)
-      #flash[:success] = "Micropost updated"
+      @feed_items = current_user.feed.paginate(page: params[:page])
     else
       render 'edit'
     end
   end
 
   def destroy
-    @micropost.destroy
-    flash[:success] = "Micropost deleted"
-    redirect_to request.referrer || root_url  # request.referrer redirects back to the previous page. THe page issuing the delete request.
+    @micropost = Micropost.find(params[:id])
+    if @micropost.destroy
+      @feed_items = current_user.feed.paginate(page: params[:page])
+    end
   end
 
     private
